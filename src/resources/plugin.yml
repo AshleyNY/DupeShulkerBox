@@ -1,0 +1,6 @@
+name: ShulkerDupe
+main: cn.dupe.nukkit.main.Main
+version: 0.0.1
+api: [1.0.5]
+
+author: Sadami

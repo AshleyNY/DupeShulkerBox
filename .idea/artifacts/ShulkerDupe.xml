@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ShulkerDupe">
+    <output-path>$PROJECT_DIR$/../../Server/plugins</output-path>
+    <root id="archive" name="ShulkerDupe.jar">
+      <element id="module-output" name="MyPlugin" />
+    </root>
+  </artifact>
+</component>
