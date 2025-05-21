@@ -10,12 +10,12 @@ public class EnableCommand extends Command {
     public EnableCommand(Main plugin) {
         super("Dupe", "控制dupe是否开启", "/dupe enable||disable");
         this.plugin = plugin;
-        this.setPermission("dupe.command.enablecmd");
+        this.setPermission("sad.admin");
     }
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
-        if(!this.testPermission(sender)) {
+        if(!sender.hasPermission("sad.admin")) {
             return false;
         }
         if(args.length == 0) {

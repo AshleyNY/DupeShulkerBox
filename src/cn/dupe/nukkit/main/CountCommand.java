@@ -7,28 +7,36 @@ public class CountCommand extends Command {
     private final Main plugin;
 
     public CountCommand(Main plugin) {
-        super("DCount", "设置挖掘盒子次数", "/DCount default|VIP [count]");
+        super("DupeTime", "设置挖掘盒子次数/鸡下蛋秒数", "/DupeTime Break|Chicken [times/time]");
         this.plugin = plugin;
-        this.setPermission("dupe.command.countcmd");
+        this.setPermission("sad.admin");
     }
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
-        if(args.length == 0) return false;
-        if(args[0].equalsIgnoreCase("default")) {
+        if(!sender.hasPermission("sad.admin")) {
+            return false;
+        }
+        if(args.length == 0) {
+            sender.sendMessage(TextFormat.RED + "请输入参数");
+            return false;
+        }
+        if(args[0].equalsIgnoreCase("Break")) {
             plugin.getConfig().set("DestroyCount", args[1]);
             plugin.saveConfig();
             plugin.reloadConfig();
+            sender.sendMessage(TextFormat.GREEN + "已设置挖掘盒子次数为: " + args[1]);
             return true;
         }
-        else if (args[0].equalsIgnoreCase("VIP")) {
-            plugin.getConfig().set("VIPDCount", args[1]);
+        // 修改第28行配置设置方式：
+        else if (args[0].equalsIgnoreCase("Chicken")) {
+            // 将字符串参数转换为整数
+            plugin.getConfig().set("ChickenHatchTime", Integer.parseInt(args[1]));
             plugin.saveConfig();
             plugin.reloadConfig();
+            sender.sendMessage(TextFormat.GREEN + "已设置鸡下蛋秒数为: " + args[1]);
             return true;
         }
-        sender.sendMessage(TextFormat.RED + "未知参数: " + args[0]);
-        sender.sendMessage(TextFormat.RED + "正确的使用方法: " + usageMessage);
         return false;
 
     }
